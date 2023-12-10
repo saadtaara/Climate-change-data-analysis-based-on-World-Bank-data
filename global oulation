@@ -1,0 +1,45 @@
+import matplotlib.pyplot as plt
+
+# Define data for China
+china_population = 1444000000
+china_agricultural = 475000000000  # In yuan
+china_forestry = 735000000000  # In yuan
+china_gas_emission = 10064000000  # In metric tons
+china_gdp = 17734387000000  # In USD
+china_livestock = 740000000  # Number of heads
+china_electricity = 7580000000000  # In kilowatt-hours
+
+# Define data for India
+india_population = 1407537422
+india_agricultural = 495000000000  # In yuan
+india_forestry = 234000000000  # In yuan
+india_gas_emission = 2688000000  # In metric tons
+india_gdp = 3534737000000  # In USD
+india_livestock = 536000000  # Number of heads
+india_electricity = 1470000000000  # In kilowatt-hours
+
+# Calculate correlation coefficients
+correlation_agricultural = (china_agricultural - india_agricultural) / (china_population - india_population)
+correlation_forestry = (china_forestry - india_forestry) / (china_population - india_population)
+correlation_gas_emission = (china_gas_emission - india_gas_emission) / (china_population - india_population)
+correlation_gdp = (china_gdp - india_gdp) / (china_population - india_population)
+correlation_livestock = (china_livestock - india_livestock) / (china_population - india_population)
+correlation_electricity = (china_electricity - india_electricity) / (china_population - india_population)
+
+# Create a correlation diagram
+plt.figure(figsize=(10, 6))
+data = {
+    "Agricultural": correlation_agricultural,
+    "Forestry": correlation_forestry,
+    "Gas Emission": correlation_gas_emission,
+    "GDP": correlation_gdp,
+    "Livestock": correlation_livestock,
+    "Electricity": correlation_electricity,
+}
+plt.bar(data.keys(), data.values())
+plt.xlabel("Data Category")
+plt.ylabel("Correlation Coefficient")
+plt.title("Correlation of China and India Data with Population")
+plt.xticks(rotation=45, ha="right")
+plt.tight_layout()
+plt.show()
