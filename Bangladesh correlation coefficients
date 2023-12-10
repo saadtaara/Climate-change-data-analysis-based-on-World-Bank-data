@@ -1,0 +1,36 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Create a pandas dataframe from the data
+data = {
+    'Population': [164.757, 192.751, 67.227, 1380.043, 331.893, 212.559, 146.243, 38.052, 10.380, 167.064, 11.508, 125.811, 16.396],
+    'Agricultural': [32.48, 33.83, 14.31, 169.10, 114.20, 71.30, 49.40, 5.60, 1.80, 53.80, 1.90, 40.00, 5.20],
+    'Forestry': [2.25, 2.30, 2.88, 24.75, 2.95, 4.90, 48.40, 40.20, 26.30, 2.30, 2.30, 23.00, 2.10],
+    'Gas Emission': [51.22, 60.11, 54.87, 235.40, 487.00, 121.20, 177.80, 72.90, 14.50, 31.30, 12.70, 122.40, 13.90],
+    'GDP': [271.22, 260.99, 311.54, 2309.18, 2542.94, 1862.53, 1472.53, 1932.59, 528.14, 304.93, 527.06, 507.60, 318.12],
+    'Livestock': [33.38, 37.93, 14.03, 224.50, 120.30, 92.10, 58.60, 6.50, 2.30, 58.60, 2.70, 41.10, 5.20],
+    'Electricity': [18.0, 67.0, 46.0, 123.0, 382.0, 188.0, 270.0, 145.0, 64.0, 32.0, 94.0, 1020.0, 11.0]
+}
+
+df = pd.DataFrame(data)
+
+# Calculate the correlation matrix
+corr = df.corr()
+
+# Create a heatmap of the correlation matrix
+plt.matshow(corr, cmap='coolwarm')
+
+# Add labels for each cell
+for i in range(len(corr)):
+    for j in range(len(corr)):
+        plt.text(i, j, f"{corr.iloc[i, j]:.2f}", ha="center")
+
+# Add a colorbar
+plt.colorbar()
+
+# Add labels for the axes
+plt.xticks(range(len(corr.columns)), corr.columns, rotation=45, ha="left")
+plt.yticks(range(len(corr.columns)), corr.columns)
+
+# Show the plot
+plt.show()
